@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>
+            Search Bar
+        </title>
+    </head>
+    <body>
+        <form action='' method='post'>
+
+            {%csrf_token%}
+            <!-- <input type="text" name="user"></input> -->
+            {{ form.as_p }}
+            
+            
+            <button type="submit"> Search</button>
+        </form>
+        {% if user %}
+        
+        <p><strong>{{ user.name }}</strong> has <strong>{{ user.public_repos }}</strong> public repositories.</p>
+        
+        {% endif %}
+
+        <!-- Showing all users -->
+        {% for i in obj%}
+        <strong>{{i.login}}</strong> ||  <strong>{{i.id}}</strong> || <strong>{{i.node_id}}</strong><br><br>
+        {% if i.image %}
+        <img src= "{{i.image.url}}" width="200px" height="200px"><br>
+        {% endif %}
+        {% endfor%}
+        <hr>
+        <!-- Showing all users after applying filter on date-->
+        {% for i in obj1%}
+        <strong>{{i.login}}</strong> ||  <strong>{{i.id}}</strong> || <strong>{{i.node_id}}</strong><br><br>
+        {% if i.image %}
+        <img src= "{{i.image.url}}" width="200px" height="200px"><br>
+        {% endif %}
+        {% endfor%}
+        
+
+    </body>
+</html>
